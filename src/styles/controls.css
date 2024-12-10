@@ -51,7 +51,7 @@
     letter-spacing: 0.5px;
 }
 
-/* 按���效果 */
+/* 按效果 */
 .btn-effect {
     position: absolute;
     top: 0;
@@ -148,5 +148,48 @@
 
     .btn-text {
         font-size: 0.9em;
+    }
+}
+
+.memory-controls {
+    display: flex;
+    gap: var(--spacing-medium);
+    margin-top: var(--spacing-large);
+    justify-content: center;
+}
+
+.memory-controls button {
+    background: var(--robot-color);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    padding: var(--spacing-medium) var(--spacing-large);
+    border-radius: var(--border-radius-medium);
+    cursor: pointer;
+    transition: all var(--animation-fast) ease;
+    font-size: var(--font-size-small);
+}
+
+.memory-controls button:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px var(--glow-color);
+}
+
+.memory-controls button:active {
+    transform: translateY(0);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .memory-controls {
+        flex-wrap: wrap;
+        gap: var(--spacing-small);
+    }
+
+    .memory-controls button {
+        flex: 1;
+        min-width: 100px;
+        padding: var(--spacing-small) var(--spacing-medium);
+        font-size: calc(var(--font-size-small) * 0.9);
     }
 } 

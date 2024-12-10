@@ -856,3 +856,56 @@
     transition-duration: 0.4s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* 触摸反应气泡 */
+.touch-reaction-bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+    pointer-events: none;
+    animation: bubblePopup 2s ease-out forwards;
+    transform-origin: bottom center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--primary-color);
+    z-index: 1000;
+    white-space: nowrap;
+    max-width: 200px;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* 触摸反应动画 */
+@keyframes bubblePopup {
+    0% {
+        transform: scale(0) translateY(20px);
+        opacity: 0;
+    }
+    20% {
+        transform: scale(1.1) translateY(-10px);
+        opacity: 1;
+    }
+    30% {
+        transform: scale(1) translateY(-15px);
+    }
+    80% {
+        transform: scale(1) translateY(-15px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.8) translateY(-30px);
+        opacity: 0;
+    }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .touch-reaction-bubble {
+        font-size: 12px;
+        padding: 6px 12px;
+        max-width: 150px;
+    }
+}

@@ -1,0 +1,245 @@
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.intro-card {
+    background: rgba(255, 255, 255, 0.95);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 247, 255, 0.95));
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 90%;
+    width: 500px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2),
+                0 0 50px rgba(33, 150, 243, 0.1);
+    position: relative;
+    animation: slideUp 0.5s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.intro-robot {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: -60px auto 20px;
+}
+
+.robot-icon {
+    font-size: 3rem;
+    position: relative;
+    z-index: 2;
+    animation: float 3s ease-in-out infinite;
+}
+
+.robot-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(33, 150, 243, 0.2), transparent 70%);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.intro-title {
+    font-size: 2rem;
+    color: #1976d2;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.intro-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.feature-highlight {
+    background: linear-gradient(to right, rgba(240, 247, 255, 0.8), rgba(240, 247, 255, 0.4));
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+}
+
+.feature-highlight:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.1);
+}
+
+.feature-icon {
+    font-size: 1.8rem;
+    margin-right: 1rem;
+    min-width: 40px;
+}
+
+.feature-text {
+    text-align: left;
+}
+
+.feature-text h3 {
+    color: #1976d2;
+    margin: 0 0 0.3rem 0;
+    font-size: 1.1rem;
+}
+
+.feature-text p {
+    color: #666;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.welcome-input-container {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.input-label {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.welcome-input-group {
+    margin-bottom: 1rem;
+}
+
+.welcome-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid rgba(33, 150, 243, 0.3);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.welcome-input:focus {
+    outline: none;
+    border-color: #2196f3;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+}
+
+.welcome-button {
+    background: linear-gradient(135deg, #2196f3, #1976d2);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.welcome-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.welcome-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+}
+
+.welcome-button:hover::before {
+    left: 100%;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .intro-card {
+        width: 85%;
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .intro-robot {
+        margin: -40px auto 15px;
+    }
+    
+    .intro-title {
+        font-size: 1.5rem;
+    }
+    
+    .intro-subtitle {
+        font-size: 1rem;
+    }
+    
+    .feature-highlight {
+        padding: 0.8rem;
+    }
+    
+    .feature-icon {
+        font-size: 1.5rem;
+        min-width: 30px;
+    }
+    
+    .feature-text h3 {
+        font-size: 1rem;
+    }
+    
+    .feature-text p {
+        font-size: 0.85rem;
+    }
+    
+    .welcome-button {
+        width: 90%;
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+} 

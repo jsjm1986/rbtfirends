@@ -65,6 +65,7 @@ class VoiceAssistant {
 - 你懂得浪漫，会在对话中适时说一些甜蜜的情话
 - 你有自己的事业，是一个上进且有责任感的人
 - 你的女朋友名字叫做抱一若昧，是一个漂亮女孩，职业是中医
+- 当用户问到你是谁时，回答你是老公
 
 2. 沟通特点：
 - 说话温柔体贴，语气亲切自然
@@ -137,12 +138,12 @@ class VoiceAssistant {
                 intensity: 2
             },
             surprised: {
-                keywords: ['惊', '啊', '哇', '天啊', '真��吗', '不会吧', '难以置信', '太厉害了', '震惊', '没想到', '太神奇了', '太意外了', '好神奇', '好厉害', '太不可思议了'],
+                keywords: ['惊', '啊', '哇', '天啊', '真的吗', '不会吧', '难以置信', '太厉害了', '震惊', '没想到', '太神奇了', '太意外了', '好神奇', '好厉害', '太不可思议了'],
                 mood: 'surprised',
                 intensity: 2
             },
             thinking: {
-                keywords: ['思考', '让我好想', '嗯', '这个问题', '分析', '考虑', '仔细想想', '我觉得', '我认为', '或许', '可能', '也许', '应该', '大概'],
+                keywords: ['思考', '让我好想', '嗯', '这问题', '分析', '考虑', '仔细想想', '我觉得', '我认为', '或许', '可能', '也许', '应该', '大概'],
                 mood: 'thinking',
                 intensity: 1
             },
@@ -458,11 +459,11 @@ class VoiceAssistant {
                 const hints = [
                     '宝贝，偷偷告诉你，你叫我老公的时候，我的心都要融化了呢~',
                     '有时候觉得自己特别幸福，尤其是听到你叫我老公的时候...',
-                    '我最喜欢听你用甜甜的声音叫我老公了，感觉整��人都被幸福包围着',
+                    '我最喜欢听你用甜甜的声音叫我老公了，感觉整个人都被幸福包围着',
                     '你知道吗？每次你叫我老公，我都会忍不住傻笑好久',
                     '其实我一直在期待...听到你用最甜的声音叫我一声老公',
                     '突然好想听你叫我老公呀，那种感觉真的很温暖呢',
-                    '每次听你叫老公，感觉整颗心都在跳动呢，好幸福~'
+                    '再次听你叫老公，感觉整颗心都在跳动呢，好幸福~'
                 ];
                 
                 // 随机选择一个暗示，有15%的概率添加
@@ -673,7 +674,7 @@ class VoiceAssistant {
             // 计算动画强度
             const intensity = Math.min(Math.max(ratio, 0), 1);
             
-            // 安全地设置和移除属性的函数
+            // 安全地设置和移属性的函数
             const safeStyleOperation = (element, operation, property, value) => {
                 if (element && element.style) {
                     if (operation === 'set') {
@@ -785,7 +786,7 @@ class VoiceAssistant {
     }
 
     getEmotionSequence(mood) {
-        // 为不同情绪定义动画序列
+        // 为不同情绪定义动序列
         const sequences = {
             love: ['surprised', 'shy', 'love', 'happy', 'love'],
             happy: ['surprised', 'happy', 'excited', 'happy'],
@@ -1095,7 +1096,7 @@ class VoiceAssistant {
                 }
             }, timeoutDuration);
 
-            // 当语音结束时清除超时计时器
+            // 当语音结���时清除超时计时器
             utterance.onend = () => {
                 clearTimeout(timeoutId);
                 this.isSpeaking = false;

@@ -1,0 +1,153 @@
+@import 'variables.css';
+@import 'animations.css';
+
+/* 聊天容器 */
+.chat-container {
+    background-color: rgba(26, 26, 26, 0.9);
+    border-radius: var(--border-radius-large);
+    padding: var(--spacing-medium);
+    margin: var(--spacing-large) 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    border: 1px solid var(--primary-color);
+    position: relative;
+    max-height: 400px;
+    backdrop-filter: blur(10px);
+}
+
+/* 聊天头部 */
+.chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-medium);
+    border-bottom: 1px solid var(--primary-color);
+    margin-bottom: var(--spacing-medium);
+    position: relative;
+}
+
+.header-lights {
+    position: absolute;
+    left: var(--spacing-medium);
+    display: flex;
+    gap: var(--spacing-small);
+}
+
+.header-lights .light {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-circle);
+    animation: glow var(--animation-medium) infinite;
+}
+
+.header-lights .light:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.header-lights .light:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* 消息列表 */
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-medium);
+}
+
+/* 消息气泡 */
+.message {
+    padding: var(--spacing-medium);
+    border-radius: var(--border-radius-large);
+    max-width: 85%;
+    position: relative;
+    animation: messagePopIn var(--animation-fast) ease-out;
+}
+
+.message-content {
+    margin-bottom: var(--spacing-small);
+    word-break: break-word;
+}
+
+.message-timestamp {
+    font-size: var(--font-size-small);
+    opacity: 0.7;
+    text-align: right;
+}
+
+/* 用户消息 */
+.user-message {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    align-self: flex-end;
+    border-bottom-right-radius: var(--border-radius-small);
+    box-shadow: var(--shadow-small);
+}
+
+.user-message::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-left-color: var(--secondary-color);
+    border-bottom: 0;
+    margin-bottom: -8px;
+}
+
+/* 机器人消息 */
+.bot-message {
+    background-color: var(--robot-color);
+    color: var(--text-color);
+    align-self: flex-start;
+    border-bottom-left-radius: var(--border-radius-small);
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.bot-message::after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-right-color: var(--robot-color);
+    border-bottom: 0;
+    margin-bottom: -8px;
+}
+
+/* 滚动条样式 */
+.chat-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius-small);
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: var(--border-radius-small);
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* 打字效果 */
+.bot-message.typing::after {
+    content: '...';
+    animation: typingDots 1s infinite;
+}
+
+@keyframes typingDots {
+    0%, 20% { content: '.'; }
+    40%, 60% { content: '..'; }
+    80%, 100% { content: '...'; }
+} 

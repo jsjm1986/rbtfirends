@@ -1,0 +1,152 @@
+@import 'variables.css';
+@import 'animations.css';
+
+/* 控制按钮容器 */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-large);
+    padding: var(--spacing-medium) 0;
+    position: relative;
+}
+
+/* 按钮基础样式 */
+.control-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-medium);
+    padding: var(--spacing-medium) var(--spacing-large);
+    border: none;
+    border-radius: 25px;
+    background-color: var(--robot-color);
+    color: var(--text-color);
+    font-size: var(--font-size-medium);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--primary-color);
+    transition: all var(--animation-fast) ease;
+    min-width: 150px;
+}
+
+/* 按钮图标 */
+.btn-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.icon-inner {
+    font-size: 1.2em;
+    transition: transform var(--animation-fast) ease;
+}
+
+/* 按钮文本 */
+.btn-text {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* 按���效果 */
+.btn-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--primary-color),
+        transparent
+    );
+    opacity: 0.2;
+    transform: translateX(-100%);
+}
+
+/* 按钮悬停效果 */
+.control-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2);
+}
+
+.control-btn:hover:not(:disabled) .btn-effect {
+    animation: buttonGlow 2s infinite;
+}
+
+.control-btn:hover:not(:disabled) .icon-inner {
+    transform: scale(1.1);
+}
+
+/* 按钮按下效果 */
+.control-btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+}
+
+/* 禁用状态 */
+.control-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--robot-color);
+}
+
+/* 开始按钮特殊样式 */
+#startBtn {
+    background: linear-gradient(45deg, var(--robot-color), var(--primary-color));
+}
+
+#startBtn:hover:not(:disabled) {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+}
+
+/* 停止按钮特殊样式 */
+#stopBtn {
+    background: linear-gradient(45deg, var(--robot-color), var(--secondary-color));
+}
+
+#stopBtn:hover:not(:disabled) {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+}
+
+/* 按钮动画 */
+@keyframes buttonGlow {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0.2;
+    }
+    50% {
+        transform: translateX(100%);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0.2;
+    }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .controls {
+        gap: var(--spacing-medium);
+        padding: var(--spacing-medium);
+    }
+
+    .control-btn {
+        padding: var(--spacing-medium);
+        min-width: 120px;
+        font-size: var(--font-size-small);
+    }
+
+    .btn-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .btn-text {
+        font-size: 0.9em;
+    }
+} 

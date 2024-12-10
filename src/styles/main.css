@@ -1,0 +1,359 @@
+@import 'variables.css';
+@import 'animations.css';
+@import 'robot.css';
+@import 'chat.css';
+@import 'controls.css';
+
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Orbitron', 'Arial Rounded MT Bold', sans-serif;
+    background-color: var(--background-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    overflow: hidden;
+}
+
+/* 背景效果 */
+.tech-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.tech-circles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, var(--glow-color) 0%, transparent 70%);
+    opacity: 0.5;
+    animation: backgroundPulse var(--animation-slow) ease-in-out infinite;
+}
+
+.tech-grid {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 20px 20px;
+    transform: rotate(45deg);
+    animation: gridMove 20s linear infinite;
+}
+
+/* 主容器 */
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: var(--spacing-large);
+    position: relative;
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-large);
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 20px var(--glow-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 800px;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    body {
+        background: var(--background-color);
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .container {
+        padding: var(--spacing-medium);
+        height: 100vh;
+        border-radius: 0;
+        max-width: 100%;
+        border: none;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tech-grid {
+        background-size: 15px 15px;
+        opacity: 0.3;
+    }
+
+    /* 移动端触摸优化 */
+    .control-btn {
+        min-height: 44px;
+        padding: var(--spacing-medium) var(--spacing-large);
+        touch-action: manipulation;
+    }
+
+    .chat-container {
+        max-height: 50vh;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        overscroll-behavior: contain;
+    }
+
+    .robot {
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    /* 移动端手势动画 */
+    .robot-head {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .robot.touched .robot-head {
+        transform: scale(0.95);
+    }
+
+    /* 优化滚动体验 */
+    .messages {
+        scroll-padding: 20px;
+        scroll-snap-type: y proximity;
+    }
+
+    .message {
+        scroll-snap-align: start;
+    }
+
+    /* 优化点击区域 */
+    .control-btn,
+    .status-indicator,
+    .chat-header {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #000;
+        --robot-color: #1a1a1a;
+        --text-color: #fff;
+    }
+}
+
+/* 减少动画 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+} 
+
+/* 加载界面 */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.loading-robot {
+    width: 120px;
+    height: 160px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.loading-head {
+    width: 100px;
+    height: 100px;
+    background-color: var(--robot-color);
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto;
+    animation: loadingFloat 2s ease-in-out infinite;
+}
+
+.loading-eyes {
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+    margin: 30px auto 0;
+}
+
+.loading-eye {
+    width: 20px;
+    height: 20px;
+    background-color: var(--robot-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-eye::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    top: 20%;
+    right: 20%;
+    animation: loadingScan 1.5s ease-in-out infinite;
+}
+
+.loading-mouth {
+    width: 30px;
+    height: 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 0 0 15px 15px;
+    border-top: 0;
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: loadingMouth 1s ease-in-out infinite;
+}
+
+.loading-body {
+    width: 80px;
+    height: 50px;
+    background-color: var(--robot-color);
+    border: 3px solid var(--primary-color);
+    border-radius: 20px;
+    position: relative;
+    margin: -10px auto 0;
+}
+
+.loading-core {
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: loadingPulse 1.5s ease-in-out infinite;
+}
+
+.loading-text {
+    font-size: 1.2em;
+    color: var(--text-color);
+    margin: 20px 0;
+    animation: loadingText 2s ease-in-out infinite;
+}
+
+.loading-progress {
+    width: 200px;
+    height: 4px;
+    background-color: var(--robot-color);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+}
+
+/* 加载动画 */
+@keyframes loadingFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes loadingScan {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+@keyframes loadingMouth {
+    0%, 100% { transform: translateX(-50%) scaleY(1); }
+    50% { transform: translateX(-50%) scaleY(0.5); }
+}
+
+@keyframes loadingPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+}
+
+@keyframes loadingText {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 界面切换 */
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.main-app {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* API密钥输入界面优化 */
+.api-key-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 900;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.modal-content {
+    background: rgba(26, 26, 26, 0.9);
+    padding: 30px;
+    border-radius: var(--border-radius-large);
+    border: 1px solid var(--primary-color);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    backdrop-filter: blur(10px);
+    animation: modalAppear 0.5s ease-out;
+}
+
+@keyframes modalAppear {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+} 

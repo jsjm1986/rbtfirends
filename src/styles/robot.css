@@ -1,0 +1,858 @@
+@import 'variables.css';
+@import 'animations.css';
+
+/* 机器人容器 */
+.robot-container {
+    text-align: center;
+    margin-bottom: var(--spacing-large);
+    position: relative;
+}
+
+.robot {
+    width: var(--robot-width);
+    height: var(--robot-height);
+    margin: 0 auto;
+    position: relative;
+    animation: float var(--animation-slow) ease-in-out infinite;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 天线部分 */
+.robot-decorations {
+    position: absolute;
+    width: 100%;
+    top: calc(var(--spacing-large) * -1);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--spacing-large);
+}
+
+.antenna {
+    width: 4px;
+    height: 20px;
+    background-color: var(--primary-color);
+    position: relative;
+    border-radius: var(--border-radius-small);
+}
+
+.antenna-light {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-circle);
+    box-shadow: 0 0 10px var(--primary-color);
+    animation: glow var(--animation-medium) infinite;
+}
+
+/* 头部样式 */
+.robot-head {
+    width: var(--head-size);
+    height: var(--head-size);
+    background-color: var(--robot-color);
+    border-radius: var(--border-radius-circle);
+    position: relative;
+    border: 3px solid var(--primary-color);
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 眼睛样式 */
+.eyes {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: var(--spacing-large) auto;
+}
+
+.eye {
+    width: var(--eye-size);
+    height: var(--eye-size);
+    background-color: var(--robot-color);
+    border: 3px solid var(--primary-color);
+    border-radius: var(--border-radius-circle);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eye-light {
+    width: 30%;
+    height: 30%;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-circle);
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    box-shadow: 0 0 10px var(--primary-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 脸颊样式 */
+.cheeks {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.cheek {
+    width: 30px;
+    height: 15px;
+    position: relative;
+}
+
+.blush {
+    width: 100%;
+    height: 100%;
+    background-color: var(--heart-color);
+    border-radius: var(--border-radius-circle);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 嘴巴样式 */
+.mouth-container {
+    width: var(--mouth-width);
+    height: var(--mouth-height);
+    margin: var(--spacing-medium) auto 0;
+    position: relative;
+}
+
+.mouth {
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--primary-color);
+    border-radius: 0 0 30px 30px;
+    border-top: 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 身体样式 */
+.robot-body {
+    width: calc(var(--head-size) * 0.75);
+    height: calc(var(--head-size) * 0.5);
+    background-color: var(--robot-color);
+    margin: -20px auto 0;
+    border-radius: 30px;
+    position: relative;
+    border: 3px solid var(--primary-color);
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+}
+
+/* 核心样式 */
+.robot-core {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.core-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--primary-color);
+    animation: pulse var(--animation-medium) infinite;
+}
+
+/* 情感状态样式 */
+.robot.happy .mouth {
+    height: 40px;
+    border-radius: 50% 50% 0 0;
+    border: 3px solid var(--primary-color);
+    border-bottom: none;
+    animation: happyMouth var(--animation-medium) infinite;
+}
+
+.robot.happy .eye {
+    animation: happyEyes var(--animation-medium) infinite;
+}
+
+.robot.happy .robot-head {
+    animation: happyBounce var(--animation-medium) infinite;
+}
+
+.robot.love .antenna-heart {
+    opacity: 1;
+    animation: heartBeat var(--animation-medium) infinite;
+}
+
+.robot.love .eye {
+    transform: scale(1.1);
+    animation: loveEyes var(--animation-medium) infinite;
+}
+
+.robot.love .blush {
+    opacity: 0.8;
+    animation: loveBlush var(--animation-medium) infinite;
+}
+
+.robot.shy .blush {
+    opacity: 0.6;
+    animation: blush var(--animation-medium) infinite;
+}
+
+.robot.shy .eye {
+    transform: translateY(2px);
+    animation: shyEyes var(--animation-medium) infinite;
+}
+
+.robot.shy .antenna {
+    animation: shyAntenna var(--animation-medium) infinite;
+}
+
+.robot.surprised .eye {
+    transform: scale(1.2);
+    animation: surprisedEyes var(--animation-fast) infinite;
+}
+
+.robot.surprised .mouth {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    animation: surprisedMouth var(--animation-fast) infinite;
+}
+
+.robot.surprised .antenna {
+    animation: surprisedAntenna var(--animation-fast) infinite;
+}
+
+.robot.thinking .eye {
+    animation: thinkingEyes var(--animation-medium) infinite;
+}
+
+.robot.thinking .antenna {
+    animation: thinkingAntenna var(--animation-medium) infinite;
+}
+
+.robot.thinking .mouth {
+    width: 30px;
+    height: 10px;
+    border-radius: 5px;
+    animation: thinkingMouth var(--animation-medium) infinite;
+}
+
+.robot.speaking .mouth {
+    animation: mouthSpeak var(--animation-fast) infinite;
+}
+
+.robot.sad .mouth {
+    height: 20px;
+    border-radius: 40px 40px 0 0;
+    border: 3px solid var(--primary-color);
+    border-top: none;
+    margin-top: 20px;
+    animation: sadMouth var(--animation-medium) infinite;
+}
+
+.robot.sad .eye {
+    transform: rotate(-10deg);
+    animation: sadEyes var(--animation-medium) infinite;
+}
+
+.robot.sad .antenna {
+    animation: sadAntenna var(--animation-medium) infinite;
+}
+
+.robot.excited .robot-head {
+    animation: excitedBounce var(--animation-fast) infinite;
+}
+
+.robot.excited .eye-light {
+    animation: excitedLight var(--animation-fast) infinite;
+}
+
+.robot.excited .antenna-heart {
+    opacity: 1;
+    animation: excitedHeart var(--animation-fast) infinite;
+}
+
+/* 状态指示器 */
+.status-indicator {
+    margin-top: var(--spacing-large);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-medium);
+}
+
+.status-dots {
+    display: flex;
+    gap: var(--spacing-small);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-circle);
+    animation: statusDots 1.5s infinite;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes mouthSpeak {
+    0%, 100% { height: 30px; border-radius: 0 0 40px 40px; }
+    50% { height: 15px; border-radius: 0 0 20px 20px; }
+}
+
+.tech-circle {
+    position: absolute;
+} 
+
+/* 新增动画关键帧 */
+@keyframes happyEyes {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(0.8) rotate(5deg); }
+}
+
+@keyframes loveEyes {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.8) rotateX(180deg); }
+}
+
+@keyframes thinkingAntenna {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+@keyframes excitedBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes excitedLight {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes happyMouth {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(1.1); }
+}
+
+@keyframes happyBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes loveBlush {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+@keyframes shyEyes {
+    0%, 100% { transform: translateY(2px) rotate(0deg); }
+    50% { transform: translateY(2px) rotate(5deg); }
+}
+
+@keyframes shyAntenna {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+@keyframes surprisedEyes {
+    0%, 100% { transform: scale(1.2); }
+    50% { transform: scale(1.4); }
+}
+
+@keyframes surprisedMouth {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes surprisedAntenna {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+}
+
+@keyframes thinkingMouth {
+    0%, 100% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+}
+
+@keyframes sadMouth {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(0.8); }
+}
+
+@keyframes sadEyes {
+    0%, 100% { transform: rotate(-10deg) translateY(0); }
+    50% { transform: rotate(-10deg) translateY(2px); }
+}
+
+@keyframes sadAntenna {
+    0%, 100% { transform: rotate(-20deg); }
+    50% { transform: rotate(-15deg); }
+}
+
+@keyframes excitedHeart {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.3) rotate(15deg); }
+}
+
+/* 情感特效 */
+.emotion-effects {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* 爱心特效 */
+.hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.robot.love .hearts {
+    opacity: 1;
+}
+
+.heart {
+    position: absolute;
+    color: var(--heart-color);
+    font-size: 20px;
+    animation: floatingHeart 2s ease-in-out infinite;
+}
+
+.heart:nth-child(1) { left: 20%; top: -20%; animation-delay: 0s; }
+.heart:nth-child(2) { left: 50%; top: -30%; animation-delay: 0.3s; }
+.heart:nth-child(3) { left: 80%; top: -20%; animation-delay: 0.6s; }
+
+/* 星星特效 */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.robot.excited .stars {
+    opacity: 1;
+}
+
+.star {
+    position: absolute;
+    color: var(--primary-color);
+    font-size: 16px;
+    animation: twinkleStar 1.5s ease-in-out infinite;
+}
+
+.star:nth-child(1) { right: 20%; top: 10%; animation-delay: 0s; }
+.star:nth-child(2) { right: 40%; top: -10%; animation-delay: 0.2s; }
+.star:nth-child(3) { right: 60%; top: 20%; animation-delay: 0.4s; }
+
+/* 泡泡特效 */
+.bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.robot.thinking .bubbles {
+    opacity: 1;
+}
+
+.bubble {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    animation: floatingBubble 2s ease-in-out infinite;
+}
+
+.bubble:nth-child(1) { right: 0; top: 20%; animation-delay: 0s; }
+.bubble:nth-child(2) { right: 10%; top: 10%; animation-delay: 0.3s; }
+.bubble:nth-child(3) { right: 20%; top: 0; animation-delay: 0.6s; }
+
+/* 闪光特效 */
+.sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.robot.happy .sparkles {
+    opacity: 1;
+}
+
+.sparkle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--primary-color);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: sparkleRotate 2s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+.sparkle:nth-child(2) { left: 50%; top: -10%; animation-delay: 0.3s; }
+.sparkle:nth-child(3) { left: 90%; top: 20%; animation-delay: 0.6s; }
+
+/* 雨滴特效 */
+.raindrops {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.robot.sad .raindrops {
+    opacity: 1;
+}
+
+.raindrop {
+    position: absolute;
+    width: 4px;
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: fallingRain 1s ease-in infinite;
+}
+
+.raindrop:nth-child(1) { left: 30%; animation-delay: 0s; }
+.raindrop:nth-child(2) { left: 50%; animation-delay: 0.2s; }
+.raindrop:nth-child(3) { left: 70%; animation-delay: 0.4s; }
+
+/* 新增动画关键帧 */
+@keyframes floatingHeart {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-50px) scale(0.5); opacity: 0; }
+}
+
+@keyframes twinkleStar {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.5) rotate(180deg); opacity: 0.5; }
+}
+
+@keyframes floatingBubble {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-40px) scale(1.5); opacity: 0; }
+}
+
+@keyframes sparkleRotate {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 0.5; }
+}
+
+@keyframes fallingRain {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(40px) scale(0.5); opacity: 0; }
+}
+
+/* 基础过渡效果 */
+.robot {
+    width: var(--robot-width);
+    height: var(--robot-height);
+    margin: 0 auto;
+    position: relative;
+    animation: float var(--animation-slow) ease-in-out infinite;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.robot-head {
+    width: var(--head-size);
+    height: var(--head-size);
+    background-color: var(--robot-color);
+    border-radius: var(--border-radius-circle);
+    position: relative;
+    border: 3px solid var(--primary-color);
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eye {
+    width: var(--eye-size);
+    height: var(--eye-size);
+    background-color: var(--robot-color);
+    border: 3px solid var(--primary-color);
+    border-radius: var(--border-radius-circle);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eye-light {
+    width: 30%;
+    height: 30%;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-circle);
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    box-shadow: 0 0 10px var(--primary-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mouth {
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--primary-color);
+    border-radius: 0 0 30px 30px;
+    border-top: 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blush {
+    width: 100%;
+    height: 100%;
+    background-color: var(--heart-color);
+    border-radius: var(--border-radius-circle);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 情感状态过渡类 */
+.robot [class*="emotion-"] {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* 表情状态混合器 */
+@keyframes emotionMixer {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* 优化现有动画 */
+.robot.happy .mouth {
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.robot.love .eye {
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.robot.shy .eye {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.robot.thinking .robot-head {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 情感叠加效果 */
+.robot.transitioning {
+    animation: emotionMixer 0.3s ease-in-out;
+}
+
+/* 表情组合过渡 */
+.robot.happy.love .eye {
+    animation: happyLoveEyes 0.6s ease-in-out;
+}
+
+.robot.shy.love .blush {
+    animation: shyLoveBlush 0.6s ease-in-out;
+}
+
+.robot.thinking.surprised .eye {
+    animation: thinkingSurprisedEyes 0.6s ease-in-out;
+}
+
+/* 新增组合动画关键帧 */
+@keyframes happyLoveEyes {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2) rotate(5deg); }
+    100% { transform: scale(1.1); }
+}
+
+@keyframes shyLoveBlush {
+    0% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.2); }
+    100% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes thinkingSurprisedEyes {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3) translateY(-2px); }
+    100% { transform: scale(1.2); }
+}
+
+/* 平滑过渡组 */
+.smooth-transition {
+    transition-property: transform, opacity, background-color, border-color;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 特效过渡优化 */
+.emotion-effects > div {
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.robot.emotion-change .emotion-effects > div {
+    animation: effectTransition 0.5s ease-in-out;
+}
+
+@keyframes effectTransition {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 表情过渡动画 */
+@keyframes morphTransition {
+    0% { transform: scale(1); filter: blur(0); }
+    50% { transform: scale(0.95); filter: blur(1px); }
+    100% { transform: scale(1); filter: blur(0); }
+}
+
+@keyframes eyeTransition {
+    0% { transform: scale(1); }
+    25% { transform: scale(0.9) translateY(1px); }
+    75% { transform: scale(1.1) translateY(-1px); }
+    100% { transform: scale(1); }
+}
+
+@keyframes mouthTransition {
+    0% { transform: scaleY(1); }
+    50% { transform: scaleY(0.5); }
+    100% { transform: scaleY(1); }
+}
+
+/* 表情状态过渡 */
+.robot.transitioning .robot-head {
+    animation: morphTransition 0.3s ease-in-out;
+}
+
+.robot.transitioning .eye {
+    animation: eyeTransition 0.3s ease-in-out;
+}
+
+.robot.transitioning .mouth {
+    animation: mouthTransition 0.3s ease-in-out;
+}
+
+/* 情感混合状态 */
+.robot.emotion-mix {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.robot.emotion-mix .robot-head {
+    animation: headMix 0.4s ease-in-out;
+}
+
+.robot.emotion-mix .eye {
+    animation: eyeMix 0.4s ease-in-out;
+}
+
+.robot.emotion-mix .mouth {
+    animation: mouthMix 0.4s ease-in-out;
+}
+
+@keyframes headMix {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05) rotate(2deg); }
+    100% { transform: scale(1); }
+}
+
+@keyframes eyeMix {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1) translateY(-1px); }
+    100% { transform: scale(1); }
+}
+
+@keyframes mouthMix {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9) translateY(1px); }
+    100% { transform: scale(1); }
+}
+
+/* 情感强度过渡 */
+.robot[data-emotion-intensity="1"] .robot-head { transform: scale(1.02); }
+.robot[data-emotion-intensity="2"] .robot-head { transform: scale(1.05); }
+.robot[data-emotion-intensity="3"] .robot-head { transform: scale(1.08); }
+
+/* 组合情感过渡 */
+.robot.happy.love .eye {
+    animation: happyLoveEyesNew 0.6s ease-in-out;
+}
+
+.robot.shy.love .blush {
+    animation: shyLoveBlushNew 0.6s ease-in-out;
+}
+
+.robot.thinking.surprised .eye {
+    animation: thinkingSurprisedEyesNew 0.6s ease-in-out;
+}
+
+@keyframes happyLoveEyesNew {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.2) rotate(5deg); }
+    60% { transform: scale(0.9) rotate(-3deg); }
+    100% { transform: scale(1.1); }
+}
+
+@keyframes shyLoveBlushNew {
+    0% { opacity: 0.6; transform: scale(1); }
+    30% { opacity: 0.8; transform: scale(1.2); }
+    60% { opacity: 0.7; transform: scale(0.9); }
+    100% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes thinkingSurprisedEyesNew {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.3) translateY(-2px); }
+    60% { transform: scale(0.9) translateY(1px); }
+    100% { transform: scale(1.2); }
+}
+
+/* 渐变过渡效果 */
+.robot-head::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, var(--primary-color) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.robot.transitioning .robot-head::before {
+    opacity: 0.1;
+}
+
+/* 光晕过渡效果 */
+.robot.emotion-change .eye-light {
+    animation: lightTransition 0.4s ease-in-out;
+}
+
+@keyframes lightTransition {
+    0% { transform: scale(1) translate(0, 0); opacity: 1; }
+    50% { transform: scale(1.5) translate(-2px, -2px); opacity: 0.5; }
+    100% { transform: scale(1) translate(0, 0); opacity: 1; }
+}
+
+/* 平滑过渡组 */
+.smooth-transition-group {
+    transition-property: transform, opacity, background-color, border-color, filter;
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

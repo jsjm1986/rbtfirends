@@ -1,0 +1,48 @@
+:root {
+    /* 颜色变量 */
+    --primary-color: #00f7ff;
+    --secondary-color: #0066ff;
+    --background-color: #000;
+    --robot-color: #1a1a1a;
+    --eye-color: #00f7ff;
+    --accent-color: #0066ff;
+    --text-color: #fff;
+    --grid-color: rgba(0, 247, 255, 0.1);
+    --glow-color: rgba(0, 247, 255, 0.5);
+    --heart-color: #ff69b4;
+    --blush-color: rgba(255, 105, 180, 0.5);
+    
+    /* 尺寸变量 */
+    --robot-width: 180px;
+    --robot-height: 240px;
+    --head-size: 160px;
+    --eye-size: 35px;
+    --mouth-width: 60px;
+    --mouth-height: 30px;
+    
+    /* 动画时间 */
+    --animation-slow: 3s;
+    --animation-medium: 2s;
+    --animation-fast: 0.3s;
+    
+    /* 间距 */
+    --spacing-small: 5px;
+    --spacing-medium: 10px;
+    --spacing-large: 20px;
+    
+    /* 圆角 */
+    --border-radius-small: 5px;
+    --border-radius-medium: 10px;
+    --border-radius-large: 20px;
+    --border-radius-circle: 50%;
+    
+    /* 阴影 */
+    --shadow-small: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --shadow-large: 0 10px 25px rgba(0, 0, 0, 0.3);
+    
+    /* 字体大小 */
+    --font-size-small: 0.9em;
+    --font-size-medium: 1em;
+    --font-size-large: 1.2em;
+} 

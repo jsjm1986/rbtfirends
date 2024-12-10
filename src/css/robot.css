@@ -1,0 +1,411 @@
+.robot {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    margin: 20px auto;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 触摸效果 */
+.robot.touched {
+    transform: scale(0.95);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.robot.touched .robot-head {
+    animation: headShake 0.5s ease;
+}
+
+/* 表情气泡 */
+.emoji-bubble {
+    position: fixed;
+    pointer-events: none;
+    font-size: 24px;
+    line-height: 1;
+    z-index: 1000;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 1;
+    transform: translate(0, 0) scale(0.5);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    animation: bubble-float 1s ease-out forwards;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+@keyframes bubble-float {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+        transform: translate(0, -10px) scale(0.8);
+    }
+    60% {
+        opacity: 1;
+        transform: translate(var(--float-x, 20px), -40px) scale(1);
+    }
+    100% {
+        transform: translate(var(--float-x, 20px), -60px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* 触摸涟漪效果 */
+.robot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.robot.touched::after {
+    animation: ripple 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
+}
+
+@keyframes headShake {
+    0% {
+        transform: translateX(0) rotate(0);
+    }
+    25% {
+        transform: translateX(-5px) rotate(-2deg);
+    }
+    50% {
+        transform: translateX(5px) rotate(2deg);
+    }
+    75% {
+        transform: translateX(-2px) rotate(-1deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0);
+    }
+}
+
+/* 触摸区域高亮 */
+.robot .touch-area {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    transition: opacity 0.3s ease;
+}
+
+.robot.touched .touch-area {
+    opacity: 1;
+    animation: touchGlow 0.6s ease-out;
+}
+
+@keyframes touchGlow {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* 情感状态过渡 */
+.robot .robot-head,
+.robot .robot-body,
+.robot .eye,
+.robot .mouth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .robot {
+        width: 150px;
+        height: 187.5px;
+    }
+
+    .emoji-bubble {
+        font-size: 20px;
+    }
+
+    @keyframes ripple {
+        100% {
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+
+/* 漫画对话框基础样式 */
+.speech-bubble {
+    position: absolute;
+    background: #fff;
+    border-radius: 25px;
+    padding: 12px 18px;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 220px;
+    min-width: 100px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    z-index: 1000;
+    border: 3px solid #333;
+    animation: speech-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* 对话框尾巴 */
+.speech-bubble::before,
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+/* 顶部对话框 */
+.speech-bubble.top {
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.speech-bubble.top::before {
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #333;
+}
+
+.speech-bubble.top::after {
+    bottom: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #fff;
+}
+
+/* 左侧对话框 */
+.speech-bubble.left {
+    right: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.speech-bubble.left::before {
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #333;
+}
+
+.speech-bubble.left::after {
+    right: -11px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 12px solid #fff;
+}
+
+/* 右侧对话框 */
+.speech-bubble.right {
+    left: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.speech-bubble.right::before {
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid #333;
+}
+
+.speech-bubble.right::after {
+    left: -11px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 12px solid #fff;
+}
+
+/* 对话框内容样式 */
+.speech-bubble .emoji {
+    font-size: 28px;
+    margin: 0 3px;
+    vertical-align: middle;
+    display: inline-block;
+    animation: emoji-bounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.speech-bubble .text {
+    font-size: 15px;
+    margin-top: 6px;
+    display: block;
+    font-weight: 500;
+    opacity: 0;
+    animation: text-fade-in 0.3s ease forwards 0.2s;
+}
+
+/* 情绪主题 */
+.speech-bubble.love {
+    background: linear-gradient(135deg, #fff0f5 0%, #fff 100%);
+    border-color: #ff69b4;
+}
+
+.speech-bubble.love::before { border-top-color: #ff69b4; }
+.speech-bubble.love::after { border-top-color: #fff0f5; }
+.speech-bubble.love.left::before { border-left-color: #ff69b4; border-top-color: transparent; }
+.speech-bubble.love.left::after { border-left-color: #fff0f5; border-top-color: transparent; }
+.speech-bubble.love.right::before { border-right-color: #ff69b4; border-top-color: transparent; }
+.speech-bubble.love.right::after { border-right-color: #fff0f5; border-top-color: transparent; }
+
+.speech-bubble.happy {
+    background: linear-gradient(135deg, #f0fff0 0%, #fff 100%);
+    border-color: #98fb98;
+}
+
+.speech-bubble.happy::before { border-top-color: #98fb98; }
+.speech-bubble.happy::after { border-top-color: #f0fff0; }
+.speech-bubble.happy.left::before { border-left-color: #98fb98; border-top-color: transparent; }
+.speech-bubble.happy.left::after { border-left-color: #f0fff0; border-top-color: transparent; }
+.speech-bubble.happy.right::before { border-right-color: #98fb98; border-top-color: transparent; }
+.speech-bubble.happy.right::after { border-right-color: #f0fff0; border-top-color: transparent; }
+
+.speech-bubble.shy {
+    background: linear-gradient(135deg, #fff5ee 0%, #fff 100%);
+    border-color: #ffa07a;
+}
+
+.speech-bubble.shy::before { border-top-color: #ffa07a; }
+.speech-bubble.shy::after { border-top-color: #fff5ee; }
+.speech-bubble.shy.left::before { border-left-color: #ffa07a; border-top-color: transparent; }
+.speech-bubble.shy.left::after { border-left-color: #fff5ee; border-top-color: transparent; }
+.speech-bubble.shy.right::before { border-right-color: #ffa07a; border-top-color: transparent; }
+.speech-bubble.shy.right::after { border-right-color: #fff5ee; border-top-color: transparent; }
+
+.speech-bubble.surprised {
+    background: linear-gradient(135deg, #e6f3ff 0%, #fff 100%);
+    border-color: #87ceeb;
+}
+
+.speech-bubble.surprised::before { border-top-color: #87ceeb; }
+.speech-bubble.surprised::after { border-top-color: #e6f3ff; }
+.speech-bubble.surprised.left::before { border-left-color: #87ceeb; border-top-color: transparent; }
+.speech-bubble.surprised.left::after { border-left-color: #e6f3ff; border-top-color: transparent; }
+.speech-bubble.surprised.right::before { border-right-color: #87ceeb; border-top-color: transparent; }
+.speech-bubble.surprised.right::after { border-right-color: #e6f3ff; border-top-color: transparent; }
+
+.speech-bubble.excited {
+    background: linear-gradient(135deg, #fff0f0 0%, #fff 100%);
+    border-color: #ff8c8c;
+}
+
+.speech-bubble.excited::before { border-top-color: #ff8c8c; }
+.speech-bubble.excited::after { border-top-color: #fff0f0; }
+.speech-bubble.excited.left::before { border-left-color: #ff8c8c; border-top-color: transparent; }
+.speech-bubble.excited.left::after { border-left-color: #fff0f0; border-top-color: transparent; }
+.speech-bubble.excited.right::before { border-right-color: #ff8c8c; border-top-color: transparent; }
+.speech-bubble.excited.right::after { border-right-color: #fff0f0; border-top-color: transparent; }
+
+/* 动画效果 */
+@keyframes speech-pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1) translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes emoji-bounce {
+    0% { transform: scale(0.5); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes text-fade-in {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 消失动画 */
+.speech-bubble.fade-out {
+    animation: speech-fade 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes speech-fade {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .speech-bubble {
+        max-width: 180px;
+        min-width: 80px;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .speech-bubble .emoji {
+        font-size: 24px;
+    }
+    
+    .speech-bubble .text {
+        font-size: 13px;
+        margin-top: 4px;
+    }
+} 

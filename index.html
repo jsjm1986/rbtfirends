@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>可爱AI男友</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body>
+    <!-- 加载界面 -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-robot">
+            <div class="loading-head">
+                <div class="loading-eyes">
+                    <div class="loading-eye"></div>
+                    <div class="loading-eye"></div>
+                </div>
+                <div class="loading-mouth"></div>
+            </div>
+            <div class="loading-body">
+                <div class="loading-core"></div>
+            </div>
+        </div>
+        <div class="loading-text">正在启动系统...</div>
+        <div class="loading-progress">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- API密���输入界面 -->
+    <div id="apiKeyModal" class="screen welcome-container hidden">
+        <h2 class="welcome-title">欢迎来到未来</h2>
+        <div class="welcome-input-group">
+            <input type="text" id="apiKeyInput" class="welcome-input" placeholder="请输入您的GLM-4-AllTools API密钥">
+        </div>
+        <button id="submitApiKey" class="welcome-button">
+            <span class="btn-text">开始体验</span>
+            <span class="btn-effect"></span>
+        </button>
+    </div>
+
+    <!-- 主程序界面 -->
+    <div class="main-app hidden" id="mainApp">
+        <div class="tech-background">
+            <div class="tech-circles"></div>
+            <div class="tech-grid"></div>
+        </div>
+
+        <div class="container">
+            <div class="robot-container">
+                <div class="robot">
+                    <!-- 天线和装饰 -->
+                    <div class="robot-decorations">
+                        <div class="antenna left">
+                            <div class="antenna-light"></div>
+                            <div class="antenna-heart">❤</div>
+                        </div>
+                        <div class="antenna right">
+                            <div class="antenna-light"></div>
+                            <div class="antenna-heart">❤</div>
+                        </div>
+                    </div>
+
+                    <!-- 头部 -->
+                    <div class="robot-head">
+                        <div class="head-lights">
+                            <div class="light"></div>
+                            <div class="light"></div>
+                            <div class="light"></div>
+                        </div>
+                        
+                        <!-- 表情部分 -->
+                        <div class="robot-face">
+                            <!-- 眉毛 -->
+                            <div class="eyebrows">
+                                <div class="eyebrow left"></div>
+                                <div class="eyebrow right"></div>
+                            </div>
+                            
+                            <!-- 眼睛 -->
+                            <div class="eyes">
+                                <div class="eye left">
+                                    <div class="eye-light"></div>
+                                    <div class="eye-shine"></div>
+                                    <div class="eye-blink"></div>
+                                    <div class="eye-lash"></div>
+                                </div>
+                                <div class="eye right">
+                                    <div class="eye-light"></div>
+                                    <div class="eye-shine"></div>
+                                    <div class="eye-blink"></div>
+                                    <div class="eye-lash"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- 脸颊 -->
+                            <div class="cheeks">
+                                <div class="cheek left">
+                                    <div class="blush"></div>
+                                </div>
+                                <div class="cheek right">
+                                    <div class="blush"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- 嘴巴 -->
+                            <div class="mouth-container">
+                                <div class="mouth">
+                                    <div class="mouth-inner"></div>
+                                    <div class="tongue"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 身体 -->
+                    <div class="robot-body">
+                        <div class="body-lights">
+                            <div class="light"></div>
+                            <div class="light"></div>
+                            <div class="light"></div>
+                        </div>
+                        <div class="robot-core">
+                            <div class="core-inner">
+                                <div class="core-light"></div>
+                                <div class="core-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 情感特效 -->
+                    <div class="emotion-effects">
+                        <div class="hearts">
+                            <div class="heart">❤</div>
+                            <div class="heart">❤</div>
+                            <div class="heart">❤</div>
+                        </div>
+                        <div class="stars">
+                            <div class="star">⭐</div>
+                            <div class="star">⭐</div>
+                            <div class="star">⭐</div>
+                        </div>
+                        <div class="bubbles">
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                        </div>
+                        <div class="sparkles">
+                            <div class="sparkle"></div>
+                            <div class="sparkle"></div>
+                            <div class="sparkle"></div>
+                        </div>
+                        <div class="raindrops">
+                            <div class="raindrop"></div>
+                            <div class="raindrop"></div>
+                            <div class="raindrop"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 状态指示器 -->
+                <div class="status-indicator">
+                    <div class="status-ring"></div>
+                    <span class="status-text">待机中...</span>
+                    <div class="status-dots">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 对话容器 -->
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="header-lights">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                    <span>实时对话</span>
+                </div>
+                <div class="messages" id="messages"></div>
+            </div>
+            
+            <!-- 控制按钮 -->
+            <div class="controls">
+                <button id="startBtn" class="control-btn">
+                    <div class="btn-icon">
+                        <div class="icon-inner">🎤</div>
+                    </div>
+                    <span class="btn-text">开始对话</span>
+                    <div class="btn-effect"></div>
+                </button>
+                <button id="stopBtn" class="control-btn" disabled>
+                    <div class="btn-icon">
+                        <div class="icon-inner">⏹</div>
+                    </div>
+                    <span class="btn-text">停止对话</span>
+                    <div class="btn-effect"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/js/app.js"></script>
+</body>
+</html> 

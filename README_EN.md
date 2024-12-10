@@ -1,8 +1,25 @@
 # AI Robot Girlfriend
 
+English | [简体中文](README.md)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/jsjm1986/rbtfirends)](https://github.com/jsjm1986/rbtfirends/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/jsjm1986/rbtfirends)](https://github.com/jsjm1986/rbtfirends/issues)
+[![GitHub forks](https://img.shields.io/github/forks/jsjm1986/rbtfirends)](https://github.com/jsjm1986/rbtfirends/network)
+
 An intelligent chatbot based on GLM-4, featuring voice interaction, emotional expression, and touch feedback. Built with pure frontend technologies, it offers adorable animations and rich interactive experiences.
 
 [Preview Image]
+
+---
+
+## ✨ Live Demo
+
+👉 [Click here to try the online demo](https://jsjm1986.github.io/rbtfirends)
+
+💡 Get GLM-4 API Key: [Apply Here](https://open.bigmodel.cn/)
+
+---
 
 ## 🌟 Features
 
@@ -39,15 +56,15 @@ An intelligent chatbot based on GLM-4, featuring voice interaction, emotional ex
 
 ## 📦 Quick Start
 
-1. Open Project Page
+1. Open the project page
 ```
-https://[Project URL]
+https://jsjm1986.github.io/rbtfirends
 ```
 
 2. Enter API Key
 - Input GLM-4 API key on first use
-- Key is securely stored locally
-- Get API key: [GLM-4 API Application URL]
+- Key will be stored locally securely
+- Get API Key: [https://open.bigmodel.cn/](https://open.bigmodel.cn/)
 
 3. Start Interacting
 - Click microphone button to start voice chat
@@ -87,13 +104,13 @@ https://[Project URL]
 
 ## 💡 FAQ
 
-### 1. Speech Recognition Issues
+### 1. Voice Recognition Issues
 Q: Why isn't voice recognition working?
 A: Please ensure:
-- Browser has microphone permission
+- Browser has microphone permissions
 - Using Chrome or Edge browser
 - Microphone is working properly
-- Stable network connection
+- Stable internet connection
 
 ### 2. API Key Issues
 Q: What if the API key is invalid?
@@ -112,9 +129,9 @@ A: Check the following:
 - Try refreshing the page
 
 ### 4. Touch Response Issues
-Q: Why aren't touch reactions working?
+Q: What if touch responses aren't working?
 A: Suggestions:
-- Ensure correct touch interaction area
+- Ensure correct touch interaction areas
 - Check for blocking elements
 - Enable touch events on mobile
 - Try clearing browser cache
@@ -125,20 +142,20 @@ A: Suggestions:
 ```javascript
 // Supported emotion types
 const emotions = [
-    'happy',   // Happy
-    'love',    // Love
-    'shy',     // Shy
-    'surprised', // Surprised
-    'thinking',  // Thinking
-    'speaking',  // Speaking
-    'sad',      // Sad
-    'excited'   // Excited
+    'happy',
+    'love',
+    'shy',
+    'surprised',
+    'thinking',
+    'speaking',
+    'sad',
+    'excited'
 ];
 ```
 
 ### Dialog Bubble Style
 ```css
-/* Custom dialog theme */
+/* Custom dialog bubble theme */
 .speech-bubble.custom {
     background: linear-gradient(135deg, #fff0f5 0%, #fff 100%);
     border-color: #ff69b4;
@@ -152,14 +169,14 @@ const emotions = [
 const touchReactions = {
     head: {
         mood: 'love',
-        sound: 'Aww, you\'re patting my head, I\'m so happy~',
+        sound: 'You\'re patting my head, I\'m so happy~',
         emoji: ['❤️', '🥰', '✨']
     },
     // More area configurations
 };
 ```
 
-## 📱 Mobile Adaptation
+## 📝 Mobile Adaptation
 
 - Responsive design
 - Touch optimization
@@ -174,16 +191,16 @@ const touchReactions = {
    - Regular key updates
 
 2. Browser Support
-   - Requires Web Speech API support
+   - Web Speech API support required
    - Modern browsers recommended
    - Chrome/Edge preferred
 
 3. Performance Optimization
-   - Control animation quantity
+   - Control animation count
    - Avoid frequent operations
    - Reasonable timeout handling
 
-## 🔄 Changelog
+## 📄 Changelog
 
 ### v1.0.0 (2024-01-20)
 - Initial release
@@ -193,13 +210,13 @@ const touchReactions = {
 
 ### v1.1.0 (2024-01-25)
 - Added emotion system
-- Optimized speech recognition
+- Optimized voice recognition
 - Improved touch reactions
 - Comic-style dialog bubbles
 
 ### v1.2.0 (2024-01-30)
 - New expression animations
-- Enhanced mobile experience
+- Mobile experience optimization
 - Added more interactive effects
 - Performance improvements
 
@@ -209,7 +226,7 @@ If you encounter any issues or have suggestions:
 
 1. Submit an Issue
 2. Send email feedback
-3. Join user group
+3. Join user group discussion
 
 ## 📄 License
 
@@ -217,13 +234,12 @@ MIT License - See LICENSE file for details
 
 ## 👥 Contact
 
-- Project URL: [Project Link]
-- Issues: [Issues Link]
-- User Group: [Group Number]
-- Email: [Contact Email]
+- Project URL: [https://github.com/jsjm1986/rbtfirends](https://github.com/jsjm1986/rbtfirends)
+- Issues: [https://github.com/jsjm1986/rbtfirends/issues](https://github.com/jsjm1986/rbtfirends/issues)
+- Live Demo: [https://jsjm1986.github.io/rbtfirends](https://jsjm1986.github.io/rbtfirends)
 
-## 🙏 Acknowledgments
+## 🙏 Special Thanks
 
 - GLM-4 team for their powerful API
-- All users providing feedback
+- All users who provided feedback
 - Open source community support 

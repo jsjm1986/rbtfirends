@@ -1,8 +1,25 @@
 # 智能机器人女朋友 (AI Robot Girlfriend)
 
+[English](README_EN.md) | 简体中文
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/jsjm1986/rbtfirends)](https://github.com/jsjm1986/rbtfirends/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/jsjm1986/rbtfirends)](https://github.com/jsjm1986/rbtfirends/issues)
+[![GitHub forks](https://img.shields.io/github/forks/jsjm1986/rbtfirends)](https://github.com/jsjm1986/rbtfirends/network)
+
 一个基于 GLM-4 的智能聊天机器人，具有语音交互、情感表达和触摸反馈功能。项目采用纯前端实现，具有可爱的动画效果和丰富的互动体验。
 
 [预览图]
+
+---
+
+## ✨ 在线体验
+
+👉 [点击这里访问在线演示](https://jsjm1986.github.io/rbtfirends)
+
+💡 获取 GLM-4 API 密钥：[申请地址](https://open.bigmodel.cn/)
+
+---
 
 ## 🌟 特色功能
 
@@ -41,13 +58,13 @@
 
 1. 打开项目页面
 ```
-https://[项目地址]
+https://jsjm1986.github.io/rbtfirends
 ```
 
 2. 输入 API 密钥
 - 在首次使用时输入 GLM-4 API 密钥
 - 密钥会安全存储在本地
-- 获取 API 密钥：[GLM-4 API 申请地址]
+- 获取 API 密钥：[https://open.bigmodel.cn/](https://open.bigmodel.cn/)
 
 3. 开始互动
 - 点击麦克风按钮开始语音对话
@@ -175,7 +192,7 @@ const touchReactions = {
 
 2. 浏览器支持
    - 需要支持 Web Speech API
-   - 建议使用现代浏览器
+   - 建议使用现代���览器
    - 推荐 Chrome/Edge
 
 3. 性能优化
@@ -217,10 +234,9 @@ MIT License - 详见 LICENSE 文件
 
 ## 👥 联系方式
 
-- 项目地址：[项目链接]
-- 问题反馈：[Issues 链接]
-- 交流群：[群号]
-- 邮箱：[联系邮箱]
+- 项目地址：[https://github.com/jsjm1986/rbtfirends](https://github.com/jsjm1986/rbtfirends)
+- 问题反馈：[https://github.com/jsjm1986/rbtfirends/issues](https://github.com/jsjm1986/rbtfirends/issues)
+- 在线演示：[https://jsjm1986.github.io/rbtfirends](https://jsjm1986.github.io/rbtfirends)
 
 ## 🙏 特别感谢
 
